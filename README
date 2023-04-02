@@ -1,0 +1,33 @@
+
+===================================Generator de chestionare=========================
+
+Stefan Alexandra Camelia
+324CB
+
+Tema presupune implementarea unui generator de chestionare ce urmareste anumite restrictii si cerinte date.
+Aceasta implementare se traduce in interpretarea corespunzatoare a unor comenzi cu un format stardardizat.
+Comenzile sunt primite din command line, prin intermediul vectorului String[] args, care, este mai intai de toate verificat
+sa nu fie null.
+Comenzile au un trigger principal, anume primul element al vectorului de argumente, urmat de mai multe optiuni.
+Pentru a separa sarcinile in program, am creat 4 clase:User, Question, Quiz si HandleFile.
+Prima comanda este imperios necesara pentru intreaga tema. Pentru a face orice in cadrul generatorului
+(ex:creare chestionar/creare intrebare/solicitare solutii),
+trebuie mai intai sa existe un cont cu username si parola. Verific daca utilizatorul da si un username si o parola, altfel
+ va primi un mesaj de eroare.
+Pentru a putea retine date importante legate de utilizatori/intrebari/chestionare folosesc fisiere .txt. In cazul in care
+se doreste crearea unui user,dupa ce am verificat daca a dat cele doua creditentiale, verific si daca mai exista in "baza mea de date"
+ aceleasi creditentiale.In cazul in care exista, afisez mesajul de eroare, altfel folosesc o functie de append din Handle File
+  pentru a stoca noul utilizator. De retinut este ca toate aceste fisiereajutatoare isi sterg content-ul in anumite momente, folosind
+  functii dde clean aflate in clasa HandleFile, pentru a nu interpreta informatie irelevanta.
+  Informatia legata de userii existenti ne serveste pentru toate celelalte comenzi si este verificata de metoda userAlreadyExists, in
+  cadrul careia imi extrag mereu datele despre userul ce vrea sa se logheze.
+
+  Pentru intrebari, verific daca restrictiile sunt indeplinite, in principiu folosindu-ma de parsare comenzii. Verific flagul pentru text care
+  insoteste enuntul intrebari, numarul de argumente pentru a fi sigura ca nu se pot pune mai mult de cinci raspunsui, sau doar unul singur.
+    Pentru parsare, foarte mult m-am ajutat de functia split("despartiror") care ma ajuta sa mi impart string-urile in
+    substringuri. Dupa ce verific in fisierul de questiontext ca intrebarea nu exista in sistem, o creez, ii dau append
+    si, de asemenea, creez un lt fisier in care textele insosesc si cate un index ce reprezinta un identificator al intrebarii
+    respective. Acest fisier imi foloseste la indeplinirea comenzii get question id by test, pentru care pur si simplu
+    caut textul intrebarii pe care utilizatorul vrea sa o creeeze si il caut in fisier unde se gaseste imediat si id-ul.
+    Id-ul este dat de ordinea in care sunt facute intrebarile, respectiv am setat ca id-ul unei intrebari sa fie mai mare cu 1
+    decat a ultimei intrebari gasite in fisier.
